@@ -1,0 +1,30 @@
+{
+    "name": "TEST_inception model",
+    "comments": "test",
+    "loader_config": {
+        "dbname": "nsynth",
+        "data_path": "/data/javier/datasets/NSYNTH",
+        "criteria": {
+            "size": 1000,
+            "attributes": ["pitch", "velocity", "instrument"],
+            "balance": ["instrument"],
+            "filter": {
+                "instrument_type": ["acoustic"],
+                "instrument": ["mallet", "vocal", "flute"],
+                "pitch": [44, 71]
+            }
+        }
+    }, 
+    "transform_config": {
+        "transform": "specgrams",
+        "fade_out": true,
+        "fft_size": 1024,
+        "win_size": 1024,
+        "n_frames": 64,
+        "hop_size": 256,
+        "log": true,
+        "ifreq": true,
+        "sample_rate": 16000,
+        "audio_length": 16000
+    }
+}

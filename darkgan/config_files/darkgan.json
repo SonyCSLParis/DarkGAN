@@ -1,0 +1,135 @@
+{
+    "name": "darkGAN_T3_small",
+    "comments": "1st experiment DarkGAN in 3090",
+    "output_path": "output_networks/darkgan/",
+    "loader_config": {
+        "dbname": "nsynth",
+        "data_path": "/home/admin/developer/data/NSYNTH/",
+        "criteria": {
+            "attributes": ["pitch", "audioset"],
+            "balance": [
+                "pitch"
+            ],
+            "filter":{
+                "as_gm": false,
+                "quantile_gm": true,
+                "audioset": 128,
+                "pitch": [
+                    44, 70
+                ]
+            },
+            "audioset":{
+                "model": "Cnn14_mAP=0.431.pth",
+                "temperature": 3
+            }
+        }
+    },
+    "transform_config": {
+        "transform": "specgrams",
+        "fade_out": true,
+        "fft_size": 2048,
+        "win_size": 2048,
+        "n_frames": 32,
+        "hop_size": 512,
+        "log_mag": true,
+        "ifreq": true,
+        "sample_rate": 16000,
+        "audio_length": 16000
+    },
+    "eval_config": {},
+    "model_config": {
+        "temperature": 3,
+        "formatLayerType": "gansynth",
+        "ac_gan": true,
+        "noise_injection": false,
+        "style_mixing": false,
+        "downSamplingFactor": [
+            [
+                32,
+                8
+            ],
+            [
+                16,
+                4
+            ],
+            [
+                8,
+                2
+            ],
+            [
+                4,
+                1
+            ],
+            [
+                2,
+                1
+            ],
+            [
+                1,
+                1
+            ]
+        ],
+        "maxIterAtScale": [
+            128000,
+            200000,
+            200000,
+            200000,
+            200000,
+            300000
+        ],
+        "alphaJumpMode": "linear",
+        "alphaNJumps": [
+            0,
+            600,
+            600,
+            600,
+            600,
+            1200
+        ],
+        "alphaSizeJumps": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+        ],
+        "transposed": false,
+        "depthScales": [
+            256,
+            128,
+            128,
+            128,
+            128,
+            64
+        ],
+        "miniBatchSize": [
+            30,
+            30,
+            20,
+            20,
+            20,
+            10
+        ],
+        "dimLatentVector": 32,
+        "perChannelNormalization": true,
+        "lossMode": "WGANGP",
+        "lambdaGP": 10.0,
+        "leakyness": 0.02,
+        "miniBatchStdDev": true,
+        "baseLearningRate": 0.001,
+        "dimOutput": 2,
+        "weightConditionG": 10.0,
+        "weightConditionD": 10.0,
+        "startScale": 0,
+        "skipAttDfake": [
+            "instrument"
+        ],
+        "output_shape": [
+            2,
+            1024,
+            32
+        ]
+    },
+    "arch": "PGAN"
+}

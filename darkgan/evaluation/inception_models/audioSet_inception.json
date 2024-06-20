@@ -1,0 +1,43 @@
+{
+    "name": "audioSet_mel",
+    "path": "evaluation/inception_models/audioset_pitch_instrument_inception_2020-04-30.pt",
+    "comments": "1st AudioSet inception model",
+    "output_path": "output_networks/darkgan",
+    "loader_config": {
+        "data_path": "/home/admin/developer/data/NSYNTH/",
+        "dbname": "nsynth",
+        "criteria": {
+            "attributes": [
+                "audioset",
+                "pitch",
+                "instrument"
+            ],
+            "balance": [
+                "pitch"
+            ],
+            "filter": {
+                "audioset": 400,
+                "pitch": [
+                    44,
+                    70
+                ]
+            },
+            "audioset": {
+                "model": "Cnn14_mAP=0.431.pth",
+                "temperature": 1
+            }
+        }
+    },
+    "transform_config": {
+        "transform": "specgrams",
+        "fade_out": true,
+        "fft_size": 2048,
+        "win_size": 2048,
+        "n_frames": 32,
+        "hop_size": 512,
+        "log_mag": true,
+        "ifreq": true,
+        "sample_rate": 16000,
+        "audio_length": 16000
+    }
+}

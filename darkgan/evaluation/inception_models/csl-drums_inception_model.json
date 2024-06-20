@@ -1,0 +1,34 @@
+{
+    "name": "csl-drums_specgrams_mel",
+    "path": "evaluation/inception_models/csl-drums_inception_model_mel2_2020-05-05.pt",
+    "comments": "1st experiment with CSL-drums",
+    "output_path": "output_networks/drumgan",
+    "loader_config": {
+        "data_path": "/data/javier/datasets/CSL-DRUMS/",
+        "dbname": "csl-drums",
+        "criteria": {
+            "attributes": [
+                "instrument",
+                "audio-commons"
+            ],
+            "size": 10,
+            "balance": [
+                "instrument"
+            ],
+            "filter": {
+            }
+        }
+    },
+    "transform_config": {
+        "transform": "specgrams",
+        "fade_out": true,
+        "fft_size": 2048,
+        "win_size": 2048,
+        "n_frames": 32,
+        "hop_size": 512,
+        "log_mag": true,
+        "ifreq": true,
+        "sample_rate": 16000,
+        "audio_length": 16000
+    }
+}

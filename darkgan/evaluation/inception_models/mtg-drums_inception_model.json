@@ -1,0 +1,27 @@
+{
+    "name": "mtg-drums_specgrams_mel",
+    "path": "evaluation/inception_models/mtg-drums_inception_model_mel_long_training_2020-05-14.pt",
+    "comments": "1st experiment with CSL-drums",
+    "output_path": "output_networks/drumgan",
+    "loader_config": {
+        "data_path": "/data/javier/datasets/MTG-DRUMS/",
+        "dbname": "mtg-drums",
+        "criteria": {
+            "attributes": [
+                "boominess", "sharpness", "warmth", "hardness", "brightness", "depth", "roughness"
+            ]
+        }
+    },
+    "transform_config": {
+        "transform": "specgrams",
+        "fade_out": true,
+        "fft_size": 2048,
+        "win_size": 2048,
+        "n_frames": 32,
+        "hop_size": 512,
+        "log_mag": true,
+        "ifreq": true,
+        "sample_rate": 16000,
+        "audio_length": 16000
+    }
+}
